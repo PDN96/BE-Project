@@ -1,3 +1,4 @@
+#Author: Prashil Negandhi.
 import time
 import socket
 import nxt
@@ -18,11 +19,11 @@ class VideoStreamHandler(object):
     def predict(self, samples):
         """
         This function is used to predict the results of a  L-layer neural network.
-        
+
         Arguments:
         X -- data set of examples you would like to label
         parameters -- parameters of the trained model
-        
+
         Returns:
         p -- predictions for the given dataset X
         """
@@ -32,7 +33,7 @@ class VideoStreamHandler(object):
         A2 = self.sigmoid(Z2)
         index = np.argmax(A2)
         return index
-    
+
     def __init__(self):
         print("Loading data set...")
         image_array = np.zeros((1, 1800), 'float')
@@ -103,8 +104,7 @@ class VideoStreamHandler(object):
             self.server_socket.close()
             b.stop_program()
             print "Connection closed on thread 1"
-            
-    
+
 
 if __name__ == '__main__':
 
