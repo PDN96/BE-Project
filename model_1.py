@@ -1,3 +1,5 @@
+#Author: Prashil Negandhi
+
 import numpy as np
 import glob
 from sklearn.model_selection import train_test_split
@@ -86,7 +88,7 @@ def load_data():
     Y = np.float32(label_array[1:, :])
     print("Image array shape: {0}".format(X.shape))
     print("Label array shape: {0}".format(Y.shape))
-    classes = np.identity(7)    
+    classes = np.identity(7)
     train_X, test_X, train_Y, test_Y = train_test_split(X, Y, test_size=0.2)
     return train_X.T, train_Y.T, test_X.T, test_Y.T, classes
 
@@ -94,7 +96,7 @@ def initialize_parameters_deep(layer_dims):
     """
     Arguments:
     layer_dims -- python array (list) containing the dimensions of each layer in our network
-    
+
     Returns:
     parameters -- python dictionary containing your parameters "W1", "b1", ..., "WL", "bL":
                     Wl -- weight matrix of shape (layer_dims[l], layer_dims[l-1])
@@ -138,7 +140,7 @@ def linear_activation_forward(A_prev, W, b, activation):
     activation -- the activation to be used in this layer, stored as a text string: "sigmoid" or "relu"
 
     Returns:
-    A -- the output of the activation function, also called the post-activation value 
+    A -- the output of the activation function, also called the post-activation value
     cache -- a python dictionary containing "linear_cache" and "activation_cache";
              stored for computing the backward pass efficiently
     """
@@ -155,11 +157,11 @@ def linear_activation_forward(A_prev, W, b, activation):
 def L_model_forward(X, parameters):
     """
     Implement forward propagation for the [LINEAR->RELU]*(L-1)->LINEAR->SIGMOID computation
-    
+
     Arguments:
     X -- data, numpy array of shape (input size, number of examples)
     parameters -- output of initialize_parameters_deep()
-    
+
     Returns:
     AL -- last post-activation value
     caches -- list of caches containing:
@@ -171,10 +173,10 @@ def L_model_forward(X, parameters):
     L = len(parameters) // 2                  # number of layers in the neural network
     # Implement [LINEAR -> RELU]*(L-1). Add "cache" to the "caches" list.
     for l in range(1, L):
-        A_prev = A 
-        A, cache = linear_activation_forward(A_prev, 
-                                             parameters['W' + str(l)], 
-                                             parameters['b' + str(l)], 
+        A_prev = A
+        A, cache = linear_activation_forward(A_prev,
+                                             parameters['W' + str(l)],
+                                             parameters['b' + str(l)],
                                              activation='relu')
         caches.append(cache)
     # Implement LINEAR -> SIGMOID. Add "cache" to the "caches" list.
